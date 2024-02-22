@@ -1,0 +1,2 @@
+insert into produtos (id, nome, status, data_criacao, data_atualizacao) values (100, 'Frigideira', 'ATIVO', '2023-02-22 10:00:00', '2023-02-22 16:29:30');
+insert into produtos (id, nome, status, data_criacao, data_atualizacao) values (101, 'Fogao', 'ATIVO', '2023-02-22 11:00:00', '2023-02-22 16:32:05');
