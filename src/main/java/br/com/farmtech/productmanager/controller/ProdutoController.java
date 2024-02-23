@@ -8,6 +8,7 @@ import br.com.farmtech.productmanager.service.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,13 +26,15 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ResponseEntity<ProdutoDto> cadastra(@RequestBody DadosCadastroProduto dto) throws ValidacaoException {
+    public ResponseEntity<ProdutoDto> cadastra(@RequestBody @Valid DadosCadastroProduto dto)
+            throws ValidacaoException {
         ProdutoDto cadastrado = service.cadastrar(dto);
         return ResponseEntity.ok(cadastrado);
     }
 
     @PutMapping
-    public ResponseEntity<ProdutoDto> edita(@RequestBody @Valid DadosAtualizacaoProduto dto) throws ValidacaoException {
+    public ResponseEntity<ProdutoDto> edita(@RequestBody @Valid DadosAtualizacaoProduto dto)
+            throws ValidacaoException {
         ProdutoDto editado = service.editar(dto);
         return ResponseEntity.ok(editado);
     }

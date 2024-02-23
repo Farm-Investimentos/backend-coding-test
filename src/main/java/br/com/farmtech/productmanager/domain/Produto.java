@@ -6,7 +6,6 @@ import lombok.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,7 +21,6 @@ public class Produto {
     private Long id;
 
     @NotBlank
-    @Size(min=3)
     private String nome;
 
     @NotNull
