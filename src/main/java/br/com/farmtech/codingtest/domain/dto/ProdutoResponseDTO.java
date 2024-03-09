@@ -10,10 +10,10 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProdutoDTO {
+public class ProdutoResponseDTO {
     private UUID id;
     private String nome;
     private String status;
-    private LocalDateTime dtCriacao;
     private LocalDateTime dtAtualizacao;
+    private LocalDateTime dtCriacao;
 }
