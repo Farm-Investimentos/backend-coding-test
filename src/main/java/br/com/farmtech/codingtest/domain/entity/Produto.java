@@ -1,5 +1,7 @@
 package br.com.farmtech.codingtest.domain.entity;
 
+import br.com.farmtech.codingtest.domain.enums.StatusProdutoEnum;
+import br.com.farmtech.codingtest.domain.enums.converters.StatusProdutoEnumConverter;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -25,8 +27,9 @@ public class Produto {
     @Column(name = "NOME")
     private String nome;
 
+    @Convert(converter = StatusProdutoEnumConverter.class)
     @Column(name = "STATUS")
-    private String status;
+    private StatusProdutoEnum status;
 
     @Column(name = "DT_ATUALIZACAO")
     private LocalDateTime dtAtualizacao;

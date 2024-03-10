@@ -31,7 +31,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public Produto criar(ProdutoRequestDTO produtoRequestDTO) throws BusinessException {
-        existsProduct(produtoRequestDTO.getNome());
+        isExistingProduct(produtoRequestDTO.getNome());
         return produtoRepository.save(produtoMapper.dtoToModel(produtoRequestDTO));
     }
 
@@ -39,7 +39,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     public Produto atualizar(UUID id, ProdutoRequestDTO produtoRequestDTO) throws NotFoundException, BusinessException {
         Produto produto = getById(id);
         if(!produto.getNome().equalsIgnoreCase(produtoRequestDTO.getNome())){
-            existsProduct(produtoRequestDTO.getNome());
+            isExistingProduct(produtoRequestDTO.getNome());
         }
         produto.setNome(produtoRequestDTO.getNome());
         produto.setStatus(produtoRequestDTO.getStatus());
@@ -52,7 +52,7 @@ public class ProdutoServiceImpl implements ProdutoService {
                 .orElseThrow(() -> new NotFoundException("Produto não encontrado."));
     }
 
-    public void existsProduct(String nome) throws BusinessException {
+    public void isExistingProduct(String nome) throws BusinessException {
         if(produtoRepository.findByNome(nome).isPresent()){
             throw new BusinessException("Produto já existente.");
         }
