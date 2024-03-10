@@ -3,6 +3,7 @@ package br.com.farmtech.codingtest.domain.entity;
 import br.com.farmtech.codingtest.domain.enums.StatusProdutoEnum;
 import br.com.farmtech.codingtest.domain.enums.converters.StatusProdutoEnumConverter;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -24,6 +25,7 @@ public class Produto {
     @Column(name = "ID")
     private UUID id;
 
+    @NotBlank
     @Column(name = "NOME")
     private String nome;
 

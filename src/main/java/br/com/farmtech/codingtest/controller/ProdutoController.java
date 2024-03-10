@@ -6,6 +6,7 @@ import br.com.farmtech.codingtest.domain.mapper.ProdutoMapper;
 import br.com.farmtech.codingtest.exception.BusinessException;
 import br.com.farmtech.codingtest.exception.NotFoundException;
 import br.com.farmtech.codingtest.service.ProdutoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,14 +31,14 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public ResponseEntity<ProdutoResponseDTO> create(@RequestBody ProdutoRequestDTO produtoRequestDTO)
+    public ResponseEntity<ProdutoResponseDTO> create(@RequestBody @Valid ProdutoRequestDTO produtoRequestDTO)
             throws BusinessException {
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoMapper.modelToDto(produtoService.criar(produtoRequestDTO)));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ProdutoResponseDTO> update(@PathVariable UUID id,
-                                                     @RequestBody ProdutoRequestDTO produtoRequestDTO) throws NotFoundException, BusinessException {
+                                                     @RequestBody @Valid ProdutoRequestDTO produtoRequestDTO) throws NotFoundException, BusinessException {
         return ResponseEntity.ok().body(produtoMapper.modelToDto(produtoService.atualizar(id, produtoRequestDTO)));
     }
 }
